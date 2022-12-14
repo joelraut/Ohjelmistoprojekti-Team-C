@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <script src="guess.js" defer></script>
+    <link rel="stylesheet" href="guess.css"/>
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+          integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+            crossorigin=""></script>
+
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>~ Airport to Airport ~</h1>
+</div>
+
+    <div id="player-modal">
+        <p id="description"></p>
+        <form id="player-form">
+            <input id="player-input" type="text" placeholder="Your name" required>
+            <input type="submit" id="button" value="Start!">
+        </form>
+    </div>
+
+
+
+
+<div id="info">
+        <button id="scoreboard" onclick="openDialog()">Scoreboard</button>
+        <button id="sound_button">Play Audio</button>
+        <p id="correct"></p>
+        <p id="target"></p>
+        <p id="guess"></p>
+</div>
+<div id="map"></div>
+</div>
+
+<dialog>
+    <span>&#x2715;</span>
+    <div id="player-scores"></div>
+</dialog>
+
+
+</body>
+</html>
