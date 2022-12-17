@@ -6,7 +6,7 @@ from flask_cors import CORS
 import mysql.connector
 from geopy import distance
 import string, random
-from game import Game
+from class_ideas import Game
 
 yhteys = mysql.connector.connect(
          host='127.0.0.1',
