@@ -6,14 +6,14 @@ from flask_cors import CORS
 import mysql.connector
 from geopy import distance
 import string, random
-from class_ideas import Game
+from game import Game
 
 yhteys = mysql.connector.connect(
          host='127.0.0.1',
          port=3306,
          database='flight_game',
          user='root',
-         password='2002',
+         password='hus-m',
          autocommit=True)
 
 app = Flask(__name__)
@@ -57,6 +57,7 @@ def country_name(answer):
     cursor.execute("SELECT country FROM data WHERE icao = %s", answer)
     country = cursor.fetchone()
     country = country[0]
+    print(country)
 
     return country
 
@@ -95,7 +96,7 @@ def newCountry(count):
 
     vastaus = {
         "lista": lista,
-        "correct": answer,
+        "correct": answer[0],
         "guesses": 0,
         "points": 5,                    # max pisteet alussa 5
         "country_num": count+1,
