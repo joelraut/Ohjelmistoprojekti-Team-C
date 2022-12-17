@@ -61,8 +61,6 @@ def country_name(answer):
 
     return country
 
-#pointTotal = []
-
 
 @app.route("/loop/<player>")
 def loop(player):
