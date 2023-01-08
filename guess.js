@@ -18,6 +18,7 @@ document.querySelector('#player-form').
       evt.preventDefault();
       const playerName = document.querySelector('#player-input').value;
       document.querySelector('#player-modal').classList.add('hide');
+      document.querySelector("#sound_button").classList.remove("hide");     // makes sound button not hidden
       loop(playerName);
     });
 
@@ -34,6 +35,8 @@ async function loop(playerName) {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
     L.control.scale().addTo(map);
+    document.querySelector("#info").classList.add("info2");
+
 
     const jsonData = await fetchJson(apiUrl + 'loop/' + user);
     const id = jsonData['id'];                                            // pelin id talteen
@@ -41,6 +44,10 @@ async function loop(playerName) {
     const locations = jsonData['locations'];
     const namae = jsonData['namae'];
     const country_name = jsonData['country_name'];
+    const player = jsonData['player'];
+    const name = document.createTextNode("Player name: " + player);
+    document.querySelector("#name").appendChild(name);
+    document.querySelector("#name").classList.remove("hide");
 
     start(id, count_country, locations, map, namae, country_name);
   } catch (error) {
@@ -71,17 +78,13 @@ async function start(Id, count_country, locations, map, namsku) {
       document.getElementById('sound_button').src = '';
       sound.src = `Äänitiedostot/${country_name}.mp3`;
       sound.play();
-      //console.log(sound);
-
-
+      console.log(sound);
     }
 
     //console.log('Maalistan pituus: ' + lista.length);
-    //console.log(`Maa nro: ${count}`);
     const correctCountry = document.createTextNode(`${correctStr}`);
-    //document.getElementById('vinkki').appendChild(correctCountry);
     const correct = document.createTextNode(
-        `Question number ${count} / 3`);
+        `Question number ${count} / 5`);
     document.getElementById('correct').appendChild(correct);
     document.getElementById('correct');
     const target = document.getElementById('target');
@@ -106,7 +109,7 @@ async function start(Id, count_country, locations, map, namsku) {
       marker.addEventListener('click', async function(evt) {
         if (guessNum < 5) {
           //console.log('Klikkaus');
-          let guess = locations[i][0]; //document.getElementById('guess').value;
+          let guess = locations[i][0];
           //console.log('Arvauksesi: ' + guess);
           const result = await fetchJson(
               apiUrl + 'guess/' + id + '/' + guess + '/' + correctStr + '/' +
@@ -114,45 +117,57 @@ async function start(Id, count_country, locations, map, namsku) {
               '/' + points);                                                        // GOES TO ILE'S FUNCTION fetchJson
           guessNum = result['guesses'];                                              // AND CHECKS IF CORRECT
           points = result['point'];
+          const distance = result['distance'];                                  // distance between guess and correct
+          console.log(distance);
           //console.log('Arvaus nro: ' + result['guesses']);
-          const p = document.createTextNode(
+          let p = document.createTextNode(
               `${result['message']}`);
 
           if (`${result['check']}` === 'true') {
             console.log('Hyvä, sait ' + points + ' p');
-            document.getElementById('guess').value = '';
             document.getElementById('correct').innerHTML = '';
             document.getElementById('target').innerHTML = '';
-            //console.log('Oikein, total points: ' + result['total_points']);
-            //console.log('..................');
-            if (count < 3) {                                                       // IF MAITA JÄLJELLÄ
+            console.log('Oikein, total points: ' + result['total_points']);
+            if (count < 5) {                                                       // IF MAITA JÄLJELLÄ
               button1.removeEventListener('click', playSound);
               start(id, count, locs, mappi, namae, country_name);                  // BACK TO START
             }
 
           } else {
             //console.log('Väärin, voit saada ' + points + ' p');
-            document.getElementById('guess').value = '';
             document.getElementById('target').innerHTML = '';
             if (guessNum === 5) {
               document.getElementById('correct').innerHTML = '';
-              //console.log('Väärin, total points: ' + result['total_points']);
-              //console.log('..................');
-              if (count < 3) {                                                     // IF MAITA JÄLJELLÄ
+              document.getElementById('target').innerHTML = '';
+              p = document.createTextNode(`${result['guesses_used_msg']}`);
+              console.log('Väärin, total points: ' + result['total_points']);
+
+
+              if (count < 5) {                                                     // IF MAITA JÄLJELLÄ
                 button1.removeEventListener('click', playSound);
                 start(id, count, locs, mappi, namae, country_name);                // BACK TO START
               }
+              if (count == 5) {
+                showResults();
+              }
             }
           }
-          target.appendChild(p);
+          //target.appendChild(p);
+          //target.appendChild(s)
+            target.appendChild(p);
+
         }
       });
+
     }
   } catch (error) {
     console.log(error);
   }
 
 }
+
+
+
 
   const dialog = document.getElementsByTagName("dialog")
   async function openDialog() {
@@ -200,3 +215,10 @@ const span = document.getElementsByTagName("span");
 span[0].onclick = function() {
     dialog[0].close();
 }
+
+function showResults() {
+  dialog[1].showModal();
+}
+  span[1].onclick = function () {
+    dialog[1].close();
+  }
