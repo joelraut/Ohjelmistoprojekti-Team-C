@@ -222,3 +222,4 @@ function showResults() {
   span[1].onclick = function () {
     dialog[1].close();
   }
+  showResults();
