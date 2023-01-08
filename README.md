@@ -4,8 +4,7 @@
 
 ![tulostaulukko](https://user-images.githubusercontent.com/111982679/211206927-53f0a9b3-5868-4fdf-9c92-de17a8cc2299.png)
 
-![Näyttökuva 2023-01-08 180844](https://user-images.githubusercontent.com/111982679/211207005-3a497eaa-9b27-4327-a9b7-e06556a3fc64.png)
-
-![Näyttökuva 2023-01-08 180954](https://user-images.githubusercontent.com/111982679/211207039-5b513312-563a-4cb1-94e3-ee7ef81b3d1b.png)
+![pic1](https://user-images.githubusercontent.com/111982142/211210807-2ffee759-3aa9-42fe-9f4b-69cd0d11e488.jpg)
+![pic2](https://user-images.githubusercontent.com/111982142/211210809-da500c53-6a7d-4f7b-a9eb-87a73b349968.jpg)
 
 ![asdgasgasg](https://user-images.githubusercontent.com/111982679/211210154-5ee77978-5964-40f5-9887-c6297bc0e5ea.png)
