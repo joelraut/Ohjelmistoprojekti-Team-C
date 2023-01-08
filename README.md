@@ -1,2 +1,2 @@
 
-![etusivu_lento](https://user-images.githubusercontent.com/111982679/211206755-534878f3-5ea0-416e-b981-fa31088d2df7.png)
+![etusivulento](https://user-images.githubusercontent.com/111982679/211206856-26f771cf-c1cd-45e6-94dd-d16f12812c51.png)
