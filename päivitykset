@@ -1,4 +1,4 @@
 Play audio -nappi ilmestyy vasta kun pelaajan nimi on syötetty
 Jos pelaajan arvaus on väärä, ilmoitetaan arvauksen ja oikean maan välinen etäisyys
 Jos kaikki arvaukset menevät väärin, peli ilmoittaa oikean vastauksen
-Pelin lopussa aukeaa pop up, jossa lukee pelaajan kokonaispisteet
+Pelin lopussa aukeaa pop up, jossa lukee pelaajan kokonaispisteet ja nappi joka mahdollistaa pelin aloittamisen alusta.
