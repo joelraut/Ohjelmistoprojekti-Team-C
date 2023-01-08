@@ -180,6 +180,37 @@ section {
     margin-top: 50px;
     display: inline-block;
 }
+#data-end {
+    width: 400px;
+    height: 400px;
+    text-align: center;
+}
+#result-text {
+    position: absolute;
+    left: 25px;
+    bottom: 150px;
+}
+#play-again {
+    left: 115px;
+    bottom: 275px;
+    position: absolute;
+    display: inline-block;
+    margin: 0px;
+    text-align: center;
+
+        height: 2.5rem;
+  background-color: #e6ebf1;
+  color: #000000;
+  border: 1px solid black;
+  border-radius: 3px;
+  font-size: 105%;
+  cursor: pointer;
+    padding: 2%;
+    line-height: 0;
+
+
+}
+
 
 dialog {
     float: right;
@@ -207,28 +238,4 @@ dialog span {
   color: #fff;
   filter: drop-shadow(2px 2px 2px #000);
     display: inline-block;
-}
-
-#result-text {
-    position: absolute;
-    left: 25px;
-    bottom: 150px;
-}
-#play-again {
-    left: 115px;
-    bottom: 275px;
-    position: absolute;
-    display: inline-block;
-    margin: 0px;
-    text-align: center;
-
-        height: 2.5rem;
-  background-color: #e6ebf1;
-  color: #000000;
-  border: 1px solid black;
-  border-radius: 3px;
-  font-size: 105%;
-  cursor: pointer;
-    padding: 2%;
-    line-height: 0;
 }
