@@ -1,5 +1,6 @@
 import json
 
+import mysql.connector
 from flask import Flask, request
 import requests
 from flask_cors import CORS
@@ -78,7 +79,7 @@ def loop(player):
         "locations": get_locations(),
         "id": id,
         "namae": namae(),
-
+        "player": player
     }
     return vastaus
 
