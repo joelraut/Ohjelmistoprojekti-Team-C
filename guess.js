@@ -128,11 +128,17 @@ async function start(Id, count_country, locations, map, namsku) {
             document.getElementById('correct').innerHTML = '';
             document.getElementById('target').innerHTML = '';
             console.log('Oikein, total points: ' + result['total_points']);
+            const totalpointsp = result['total_points'];
+
             if (count < 5) {                                                       // IF MAITA JÄLJELLÄ
               button1.removeEventListener('click', playSound);
               start(id, count, locs, mappi, namae, country_name);                  // BACK TO START
             }
-
+                if (count == 5) {
+                const textfield = document.getElementById("text-p")
+                textfield.innerText = "Game over! You got a total of "+ totalpointsp +" points"
+                showResults();
+              }
           } else {
             //console.log('Väärin, voit saada ' + points + ' p');
             document.getElementById('target').innerHTML = '';
