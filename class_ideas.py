@@ -1,11 +1,12 @@
 import mysql.connector
+from geopy import distance
 
 yhteys = mysql.connector.connect(
          host='127.0.0.1',
          port=3306,
          database='flight_game',
          user='root',
-         password='2002',
+         password='hus-m',
          autocommit=True)
 
 
@@ -25,11 +26,41 @@ class Game:
         cursor = yhteys.cursor()
         cursor.execute("INSERT INTO points (id, username, total_points) VALUES ('" + str(id) + "', '" + player + "', '" + str(p) + "')")
 
+    #gets coordinates from database
+    def get_location(icao):
+        tuple = (icao,)
+        sql = '''select latitude_deg, longitude_deg from airport
+        where ident = %s'''
+        kursori = yhteys.cursor()
+        kursori.execute(sql, tuple)
+        result = kursori.fetchone()
+        return result
+
+    def country_name(answer):
+        answer = (answer, )
+        cursor = yhteys.cursor()
+        cursor.execute("SELECT country FROM data WHERE icao = %s", answer)
+        country = cursor.fetchone()
+        country = country[0]
+        print(country)
+        return country
 
     def check_if_correct(self, id, input, correct, guesses, points):
         guess = int(guesses)
         self.guesses = guess + 1
         self.point = int(points)
+        #cursor = yhteys.cursor()
+        #cursor.execute("SELECT icao from data WHERE country = %s", input)
+        #icao = cursor.fetchone()
+        #icao = input
+        #print(icao)
+        guess_coords = Game.get_location(input)
+        correct_coords = Game.get_location(correct)
+        print(guess_coords, correct_coords)
+        dist = distance.distance(guess_coords, correct_coords).km
+        dist = round(dist)
+        correct_name = Game.country_name(correct)
+
 
         if input == correct:
             check = True
@@ -39,7 +70,7 @@ class Game:
         else:
             self.point -= 1
             check = False
-            msg = f"Wrong! Guesses left: {self.point}."
+            msg = f"Wrong! Guesses left: {self.point}. The distance to the correct country is {dist} km."
 
         Game.pointTotal.append(self.point)
 
@@ -58,9 +89,11 @@ class Game:
         vastaus = {
             "check": check,
             "message": msg,
+            "guesses_used_msg": f"Wrong, you got 0 p. The right answer was {correct_name}.",
             "guesses": self.guesses,
             "point": self.point,
-            "total_points": Game.total_point_num
+            "total_points": Game.total_point_num,
+            "distance": dist
 
         }
         return vastaus
