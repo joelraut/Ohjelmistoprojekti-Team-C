@@ -141,6 +141,7 @@ async function start(Id, count_country, locations, map, namsku) {
               document.getElementById('target').innerHTML = '';
               p = document.createTextNode(`${result['guesses_used_msg']}`);
               console.log('Väärin, total points: ' + result['total_points']);
+              const totalpointsp = result['total_points']
 
 
               if (count < 5) {                                                     // IF MAITA JÄLJELLÄ
@@ -148,6 +149,8 @@ async function start(Id, count_country, locations, map, namsku) {
                 start(id, count, locs, mappi, namae, country_name);                // BACK TO START
               }
               if (count == 5) {
+                const textfield = document.getElementById("text-p")
+                textfield.innerText = "Game over! You got a total of "+ totalpointsp +" points"
                 showResults();
               }
             }
@@ -222,4 +225,3 @@ function showResults() {
   span[1].onclick = function () {
     dialog[1].close();
   }
-  showResults();
