@@ -39,9 +39,11 @@ body {
   margin: auto;
   font-size: 100%;
 }
+
 .hide {
   display: none;
 }
+
 
 #button {
   height: 100%;
@@ -54,8 +56,9 @@ body {
   cursor: pointer;
   margin-left: 0.5rem;
 }
-#sound_button{
- height: 100%;
+
+#sound_button {
+    height: 2.5rem;
   width: 20%;
   background-color: #e6ebf1;
   color: #000000;
@@ -65,9 +68,12 @@ body {
   cursor: pointer;
   margin-left: 0.5rem;
     padding: 2%;
+    line-height: 0;
+
 }
-#scoreboard{
-  height: 100%;
+
+#scoreboard {
+  height: 2.5rem;
   width: 20%;
   background-color: #e6ebf1;
   color: #000000;
@@ -77,6 +83,7 @@ body {
   cursor: pointer;
   margin-left: 0.5rem;
     padding: 2%;
+    line-height: 0;
 }
 
 #button:hover {
@@ -90,7 +97,6 @@ body {
     text-align: center;
     background-color: #212032;
     color: #e5e5d7;
-    margin-bottom: 1rem;
 }
 .header h1 {
   display: inline-block;
@@ -100,8 +106,13 @@ body {
 
 #info {
     text-align: center;
+    height: 10.7rem;
 }
 
+.info2 {
+        border-style: ridge;
+        background-color: #a9d1de;
+}
 
 footer {
     font-size: 20px;
@@ -114,6 +125,7 @@ footer {
     background-color: deepskyblue;
     overflow: hidden;
 }
+
 .topnav a {
     float: right;
     color: #f2f2f2;
@@ -144,7 +156,6 @@ footer {
     display: inline-block;
     text-align: left;
 
-
 }
 .player_print-s {
     display: inline-block;
@@ -159,6 +170,7 @@ footer {
 
     text-align: center;
 }
+
 section {
     margin: 10px;
     width: 500px;
@@ -168,8 +180,8 @@ section {
     margin-top: 50px;
     display: inline-block;
 }
-        dialog {
-            float: right;
+dialog {
+    float: right;
   position: fixed;
   transition: all 0.5s ease-in-out;
   opacity: 0;
