@@ -6,19 +6,21 @@ yhteys = mysql.connector.connect(
          port=3306,
          database='flight_game',
          user='root',
-         password='hus-m',
+         password='tEEmur00t321',
          autocommit=True)
 
 
 class Game:
     pointTotal = []
     total_point_num = 0
+    counter = 0
 
     def __init__(self):
         #self.id = 0
         #self.player = 'tiia'
         self.guesses = 0
         self.point = 0
+
 
 
     def new_game(self, id, player):
@@ -74,17 +76,25 @@ class Game:
 
         Game.pointTotal.append(self.point)
 
-        if self.guesses == 5:                   # kaikki arvaukset käytetty tai mennyt oikein
+        if self.guesses == 5:
+            Game.counter += 1
+            # kaikki arvaukset käytetty tai mennyt oikein
             if len(Game.pointTotal) == 1:
                 pisteet = Game.pointTotal[0]
             else:
                 pisteet = Game.pointTotal[-1]
 
             Game.total_point_num += pisteet
+
+
+
             Game.pointTotal = []
             # päivittää tietokantaan lopulliset pisteet
             cursor = yhteys.cursor()
             cursor.execute("UPDATE points SET total_points =  " + str(Game.total_point_num) + " WHERE id ='" + id + "'")
+
+
+
 
         vastaus = {
             "check": check,
@@ -94,6 +104,9 @@ class Game:
             "point": self.point,
             "total_points": Game.total_point_num,
             "distance": dist
+}
+        if Game.counter == 5:
+            Game.total_point_num = 0
+            Game.counter = 0
 
-        }
         return vastaus
